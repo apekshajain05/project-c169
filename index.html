@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+         <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+        <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link href="./style.css" rel="stylesheet" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script src='./createButtons.js'></script>
+        <script src='./markerHandler.js'></script>>
+    </head>
+
+    <body style="margin : 0px; overflow: hidden;">
+        <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; 
+        displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;" gesture-detector create-buttons>
+
+            <a-entity camera></a-entity>
+
+            <a-assets>
+                <a-asset-item id='car_model' src='./assets/car_model/scene.gltf'></a-asset-item>
+            </a-assets>
+
+            <a-marker id='car-marker' type='pattern' url='./assets/pattern-car.patt' cursor='rayOrigin: mouse' marker-handler>
+
+                <a-entity id="car" position="-1 0 0" scale="0.05 0.05 0.05" 
+                gltf-model="#car-model"
+                gesture-handler animation-mixer>  
+              </a-entity>
+              
+              <a-plane position="0 0 0" width="2.2" height="1.5" rotation="-90 0 0">
+                <a-plane position="0 0.89 0.02" width="2.15" height="0.3" rotation="0 0 0" color="#F0C30F">
+                  <a-entity position="0 0 0.1" rotation="0 0 0"
+                    text="font:monoid;value:MCQUEEN CAR;color:black;width: 1.8;height:1;align:center;"></a-entity>
+                </a-plane>
+                
+                <a-entity position="0 0 0.1" rotation="0 0 0"
+                  text="color: black; align: center; width: 2; font: monoid;
+                       value:
+                       Disney pixar's cars vehicles with a cool, new, kid-activated racing feature, pump the spoiler to charge the car, release and speed off up to 10 feet and each has iconic cars 3 decos and designs">
+                </a-entity>
+              </a-plane>
+            </a-marker>
+        </a-scene>
+        <div id='button-div'></div>
+    </body>
+</html>
